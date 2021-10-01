@@ -24,10 +24,7 @@ defmodule TerminusSector do
     Resources	Ind+tech+pop/2
     Loyalty:	Scholarship+Tech-Population
   """
-
-  def provname() do
-    "New Ralphsland"
-  end
+  @provname "New Ralphsland"
 
   def provfact() do
     "Federated Suns"
@@ -42,7 +39,7 @@ defmodule TerminusSector do
   end
 
   def popmax() do
-    div(round(techcurr() + resourcecurr()),2)
+    div(round(techcurr() + resourcecurr()), 2)
   end
 
   def industcurr() do
@@ -50,7 +47,7 @@ defmodule TerminusSector do
   end
 
   def industmax() do
-    div(round(techcurr() + scholcurr()),3)
+    div(round(techcurr() + scholcurr()), 3)
   end
 
   def scholcurr() do
@@ -58,7 +55,7 @@ defmodule TerminusSector do
   end
 
   def scholmax() do
-    div(round(techcurr() + resourcecurr()),2)
+    div(round(techcurr() + resourcecurr()), 2)
   end
 
   def resourcecurr() do
@@ -66,7 +63,7 @@ defmodule TerminusSector do
   end
 
   def resourcemax() do
-    div(round(techcurr() + popcurr() + industcurr()),3)
+    div(round(techcurr() + popcurr() + industcurr()), 3)
   end
 
   def loyaltycurr() do
@@ -74,7 +71,7 @@ defmodule TerminusSector do
   end
 
   def loyaltymax() do
-    div(round(techcurr() + scholcurr()),- popcurr())
+    div(round(techcurr() + scholcurr()), -popcurr())
   end
 
   def techcurr do
@@ -82,6 +79,18 @@ defmodule TerminusSector do
   end
 
   def report do
-    "#{provname()} is owned by #{provplayer()}, a member of the #{provfact()}. #{provname()} has a Population of #{popcurr()} with a maximum of #{popmax()}, an Industry Rating of #{industcurr()} with a maximum of #{industmax()} a Resources Rating of #{resourcecurr()} with a maximum of #{resourcecurr()} , a Loyalty rating of #{loyaltycurr()} with a maximum of #{loyaltycurr()} and a Technology rating of #{techcurr()}."
+    "#{@provname} is owned by #{provplayer()}, a member of the #{provfact()}. #{@provname} has a Population of #{
+      popcurr()} with a maximum of #{popmax()}, an Industry Rating of #{industcurr()} with a maximum of #{
+      industmax()
+    } a Resources Rating of #{resourcecurr()} with a maximum of #{resourcecurr()} , a Loyalty rating of #{
+      loyaltycurr()
+    } with a maximum of #{loyaltycurr()} and a Technology rating of #{techcurr()}."
+  end
+
+  # read(path)
+  # Returns {:ok, binary}, where binary is a binary data object that contains the contents of path, or {:error, reason} if an error occurs.
+  # Read requires a string.
+  def load do
+    File.read("database.csv")
   end
 end
